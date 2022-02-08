@@ -1,2 +1,3 @@
-# common
-Common stuff for other repositories
+# Commons
+
+This project provides functions and methods common for other projects.
