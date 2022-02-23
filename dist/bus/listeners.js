@@ -1,22 +1,21 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.handleBusEvent = exports.handleBusRequest = exports.addBusEventListener = exports.addBusRequestListener = void 0;
-/** */
-const requestListeners = [];
-const eventListeners = [];
+global.andcreations_BusRequestListeners = [];
+global.andcreations_BusEventListeners = [];
 /** */
 function addBusRequestListener(listener) {
-    requestListeners.push(listener);
+    andcreations_BusRequestListeners.push(listener);
 }
 exports.addBusRequestListener = addBusRequestListener;
 /** */
 function addBusEventListener(listener) {
-    eventListeners.push(listener);
+    andcreations_BusEventListeners.push(listener);
 }
 exports.addBusEventListener = addBusEventListener;
 /** */
 async function handleBusRequest(topic, payload) {
-    for (const listener of requestListeners) {
+    for (const listener of andcreations_BusRequestListeners) {
         if (listener.canHandleRequest(topic)) {
             return listener.handleRequest(topic, payload);
         }
@@ -26,7 +25,7 @@ async function handleBusRequest(topic, payload) {
 exports.handleBusRequest = handleBusRequest;
 /** */
 async function handleBusEvent(topic, payload) {
-    for (const listener of eventListeners) {
+    for (const listener of andcreations_BusEventListeners) {
         await listener.handleEvent(topic, payload);
     }
 }
