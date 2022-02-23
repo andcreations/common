@@ -11,30 +11,34 @@ export interface BusHandler {
 }
 
 /** */
-const requestHandlers: BusHandler[] = [];
-const eventHandlers: BusHandler[] = [];
+declare const andcreations_BusRequestHandlers: BusHandler[];
+(global as any).andcreations_BusRequestHandlers = [];
+
+/** */
+declare const andcreations_BusEventHandlers: BusHandler[];
+(global as any).andcreations_BusEventHandlers = [];
 
 /** */
 export function addBusRequestHandler(handler: BusHandler): void {
-  const hasHandler = requestHandlers.some(itr => {
+  const hasHandler = andcreations_BusRequestHandlers.some(itr => {
     return itr.topic === handler.topic;
   });
   if (hasHandler) {
     throw Error(`Duplicated bus request handler of topic ${handler.topic}`);
   }
-  requestHandlers.push(handler);
+  andcreations_BusRequestHandlers.push(handler);
 }
 
 /** */
 export function addBusEventHandler(handler: BusHandler): void {
-  eventHandlers.push(handler);
+  andcreations_BusEventHandlers.push(handler);
 }
 
 /** */
 export function getBusRequestHandlers(
   clazz: Function,
 ): BusHandler[] {
-  return requestHandlers.filter(handler => {
+  return andcreations_BusRequestHandlers.filter(handler => {
     return handler.clazz === clazz;
   });
 }
@@ -43,7 +47,7 @@ export function getBusRequestHandlers(
 export function getBusEventsHandlers(
   clazz: Function,
 ): BusHandler[] {
-  return eventHandlers.filter(handler => {
+  return andcreations_BusEventHandlers.filter(handler => {
     return handler.clazz === clazz;
   });
 }

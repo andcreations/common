@@ -14,17 +14,21 @@ export interface BusEventListener {
 }
 
 /** */
-const requestListeners: BusRequestListener[] = [];
-const eventListeners: BusEventListener[] = [];
+declare const andcreations_BusRequestListeners: BusRequestListener[];
+(global as any).andcreations_BusRequestListeners = [];
+
+/** */
+declare const andcreations_BusEventListeners: BusEventListener[];
+(global as any).andcreations_BusEventListeners = [];
 
 /** */
 export function addBusRequestListener(listener: BusRequestListener): void {
-  requestListeners.push(listener);
+  andcreations_BusRequestListeners.push(listener);
 }
 
 /** */
 export function addBusEventListener(listener: BusEventListener): void {
-  eventListeners.push(listener);
+  andcreations_BusEventListeners.push(listener);
 }
 
 /** */
@@ -32,7 +36,7 @@ export async function handleBusRequest<T, R>(
   topic: string,
   payload?: T
 ): Promise<R> {
-  for (const listener of requestListeners) {
+  for (const listener of andcreations_BusRequestListeners) {
     if (listener.canHandleRequest(topic)) {
       return listener.handleRequest(topic, payload);
     }
@@ -45,7 +49,7 @@ export async function handleBusEvent<T>(
   topic: string,
   payload?: T
 ): Promise<void> {
-  for (const listener of eventListeners) {
+  for (const listener of andcreations_BusEventListeners) {
     await listener.handleEvent(topic, payload);
   }
 }
