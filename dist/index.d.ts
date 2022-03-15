@@ -1,3 +1,4 @@
+export * from './lang';
 export * from './bus';
 export * from './http';
 export * from './string';
