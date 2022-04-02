@@ -15,5 +15,5 @@ __exportStar(require("./bus"), exports);
 __exportStar(require("./http"), exports);
 __exportStar(require("./string"), exports);
 __exportStar(require("./sync"), exports);
-__exportStar(require("./io"), exports);
+__exportStar(require("./ioc"), exports);
 __exportStar(require("./time"), exports);

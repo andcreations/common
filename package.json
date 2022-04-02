@@ -1,6 +1,6 @@
 {
   "name": "@andcreations/common",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Commons for other repositories",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,7 +14,8 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "axios": "^0.24.0",
+    "axios": "^0.26.1",
+    "reflect-metadata": "^0.1.13",
     "typescript": "^4.0.3"
   },
   "devDependencies": {
