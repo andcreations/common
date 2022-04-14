@@ -11,15 +11,13 @@ const DAYS_CHARACTER = 'd';
 /** */
 class TimePeriod {
     /** */
-    static toStr(timeMs) {
+    static toValues(timeMs) {
         let time = Math.floor(timeMs / 1000);
         // seconds
         const seconds = time % 60;
-        const secondsStr = seconds ? `${seconds}${SECONDS_CHARACTER}` : '';
         time = (time - seconds) / 60;
         // minutes
         const minutes = time % 60;
-        const minutesStr = minutes ? `${minutes}${MINUTES_CHARACTER}` : '';
         time = (time - minutes) / 60;
         // hours
         const hours = time % 24;
@@ -27,7 +25,17 @@ class TimePeriod {
         time = (time - hours) / 24;
         // days
         const days = time;
+        return { days, hours, minutes, seconds };
+    }
+    /** */
+    static toStr(timeMs) {
+        const { days, hours, minutes, seconds } = TimePeriod.toValues(timeMs);
+        // values as strings
+        const secondsStr = seconds ? `${seconds}${SECONDS_CHARACTER}` : '';
+        const minutesStr = minutes ? `${minutes}${MINUTES_CHARACTER}` : '';
+        const hoursStr = hours ? `${hours}${HOURS_CHARACTER}` : '';
         const daysStr = days ? `${days}${DAYS_CHARACTER}` : '';
+        // zero seconds
         if (!seconds && !minutes && !hours && !days) {
             return `0${SECONDS_CHARACTER}`;
         }
