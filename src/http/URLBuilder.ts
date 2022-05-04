@@ -35,6 +35,6 @@ export class URLBuilder {
 
   /** */
   static build(urlPath: string, queryParams?: HTTPParams): string {
-    return encodeURI(`${urlPath}${URLBuilder.buildQueryParams(queryParams)}`);
+    return `${urlPath}${URLBuilder.buildQueryParams(queryParams)}`;
   }
 }

@@ -29,7 +29,7 @@ class URLBuilder {
     }
     /** */
     static build(urlPath, queryParams) {
-        return encodeURI(`${urlPath}${URLBuilder.buildQueryParams(queryParams)}`);
+        return `${urlPath}${URLBuilder.buildQueryParams(queryParams)}`;
     }
 }
 exports.URLBuilder = URLBuilder;
