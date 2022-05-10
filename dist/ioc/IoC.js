@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.IoC = exports.Inject = exports.Controller = exports.Service = void 0;
 require("reflect-metadata");
+const starters_1 = require("./starters");
 /** */
 const Service = () => {
     return (target) => {
@@ -119,6 +120,11 @@ class IoC {
         }
         // instantiate
         const instance = new target(...values);
+        // starters
+        const startMethodNames = (0, starters_1.getClassStartMethodNames)(target);
+        for (const methodName of startMethodNames) {
+            instance[methodName]();
+        }
         // store
         IoC.dependencies.push({ key: target, value: instance });
         return instance;

@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import { getClassStartMethodNames } from './starters';
 
 /** */
 export const Service = (): IoCClassDecorator<any> => {
@@ -155,6 +156,12 @@ export class IoC {
 
   // instantiate
     const instance = new target(...values);
+
+  // starters
+    const startMethodNames = getClassStartMethodNames(target);
+    for (const methodName of startMethodNames) {
+        instance[methodName]();
+    }
 
   // store
     IoC.dependencies.push({ key: target, value: instance });
