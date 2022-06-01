@@ -27,6 +27,9 @@ export interface TimePeriodValues {
 
   /** */
   seconds: number;
+
+  /** */
+  milliseconds: number;
 }
 
 /** */
@@ -35,6 +38,9 @@ export class TimePeriod {
   static toValues(timeMs: number): TimePeriodValues {
     let time = Math.floor(timeMs / 1000);
   
+  // milliseconds
+    const milliseconds = timeMs % 1000;
+
   // seconds
     const seconds = time % 60;
     time = (time - seconds) / 60;
@@ -51,7 +57,7 @@ export class TimePeriod {
   // days
     const days = time;
  
-    return { days, hours, minutes, seconds };
+    return { days, hours, minutes, seconds, milliseconds };
   }
 
   /** */
@@ -127,9 +133,13 @@ export class TimePeriod {
       valueStr += ch;
     }
 
-  // period must end with a unit
+  // milliseconds without unit
     if (valueStr.length > 0) {
-      throw new InvalidTimePeriodStringError(str);
+      const milliseconds = parseInt(valueStr);
+      if (milliseconds > 1000) {
+        throw new InvalidTimePeriodStringError(str);
+      }
+      totalMilliseconds += milliseconds;
     }
   
     return totalMilliseconds;

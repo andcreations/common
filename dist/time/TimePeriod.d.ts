@@ -8,6 +8,8 @@ export interface TimePeriodValues {
     minutes: number;
     /** */
     seconds: number;
+    /** */
+    milliseconds: number;
 }
 /** */
 export declare class TimePeriod {

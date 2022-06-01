@@ -4,6 +4,7 @@ import { TimePeriod } from './TimePeriod';
 describe('TimePeriod', () => {
   describe('TimePeriod.fromStr', () => {
     it('should parse single values', () => {
+      expect(TimePeriod.fromStr('67')).toEqual(67);
       expect(TimePeriod.fromStr('45s')).toEqual(45 * 1000);
       expect(TimePeriod.fromStr('2m')).toEqual(2 * 60 * 1000);
       expect(TimePeriod.fromStr('13h')).toEqual(13 * 60 * 60 * 1000);
@@ -11,6 +12,10 @@ describe('TimePeriod', () => {
     });
 
     it('should parse mixed values', () => {
+      expect(TimePeriod.fromStr('13s456')).toEqual(
+        13 * 1000 +
+        456
+      );
       expect(TimePeriod.fromStr('2m45s')).toEqual(
         2 * 60 * 1000 +
         45 * 1000
@@ -20,11 +25,12 @@ describe('TimePeriod', () => {
         13 * 60 * 1000 +
         37 * 1000
       );
-      expect(TimePeriod.fromStr('4d7h23m57s')).toEqual(
+      expect(TimePeriod.fromStr('4d7h23m57s697')).toEqual(
         4 * 24 * 60 * 60 * 1000 +
         7 * 60 * 60 * 1000 +
         23 * 60 * 1000 +
-        57 * 1000
+        57 * 1000 +
+        697
       );
     });
 
@@ -38,6 +44,7 @@ describe('TimePeriod', () => {
     });
 
     it('should not parse invalid values', () => {
+      expect(() => TimePeriod.fromStr('1s1200')).toThrow();
       expect(() => TimePeriod.fromStr('1ss')).toThrow();
       expect(() => TimePeriod.fromStr('2M1s')).toThrow();
       expect(() => TimePeriod.fromStr('foo23h')).toThrow();
