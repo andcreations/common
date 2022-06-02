@@ -79,7 +79,8 @@ export class TimePeriod {
   }
 
   /** */
-  static fromStr(str: string): number {
+  static fromStr(value: string | number): number {
+    const str = value.toString();
     if (!str.length) {
       throw new InvalidTimePeriodStringError(str);
     }

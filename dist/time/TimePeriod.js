@@ -44,7 +44,8 @@ class TimePeriod {
         return `${daysStr}${hoursStr}${minutesStr}${secondsStr}`;
     }
     /** */
-    static fromStr(str) {
+    static fromStr(value) {
+        const str = value.toString();
         if (!str.length) {
             throw new InvalidTimePeriodStringError_1.InvalidTimePeriodStringError(str);
         }
