@@ -25,7 +25,7 @@ export interface HTTPResponse<T> {
       );
     }
     return {
-      data: JSON.parse(response.data) as T,
+      data: response.data.length ? JSON.parse(response.data) as T : null,
       status: response.status,
       statusText: response.statusText,
     };

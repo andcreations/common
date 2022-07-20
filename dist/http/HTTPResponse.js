@@ -8,7 +8,7 @@ function toHTTPResponse(response) {
         throw new HTTPError_1.HTTPError(response.status, response.statusText, response.data.toString());
     }
     return {
-        data: JSON.parse(response.data),
+        data: response.data.length ? JSON.parse(response.data) : null,
         status: response.status,
         statusText: response.statusText,
     };
