@@ -27,8 +27,28 @@ export function addBusRequestListener(listener: BusRequestListener): void {
 }
 
 /** */
+export function removeBusRequestListener(listener: BusRequestListener): void {
+  const index = andcreations_BusRequestListeners.findIndex(itr => {
+    return itr === listener;
+  });
+  if (index !== -1) {
+    andcreations_BusRequestListeners.splice(index, 1);
+  }
+}
+
+/** */
 export function addBusEventListener(listener: BusEventListener): void {
   andcreations_BusEventListeners.push(listener);
+}
+
+/** */
+export function removeBusEventListener(listener: BusEventListener): void {
+  const index = andcreations_BusEventListeners.findIndex(itr => {
+    return itr === listener;
+  });
+  if (index !== -1) {
+    andcreations_BusEventListeners.splice(index, 1);
+  }
 }
 
 /** */

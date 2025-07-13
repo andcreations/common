@@ -1,6 +1,6 @@
 {
   "name": "@andcreations/common",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "description": "Commons for other repositories",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -12,7 +12,7 @@
   },
   "author": "AndCreations",
   "license": "MIT",
-  "private": true,
+  "private": false,
   "dependencies": {
     "axios": "^0.26.1",
     "reflect-metadata": "^0.1.13",
@@ -35,5 +35,13 @@
     "transform": {
       "^.+\\.(t)s$": "ts-jest"
     }
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andcreations/common.git"
+  },
+  "bugs": {
+    "url": "https://github.com/andcreations/common/issues"
+  },
+  "homepage": "https://github.com/andcreations/common#readme"
 }
