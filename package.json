@@ -1,6 +1,6 @@
 {
   "name": "@andcreations/common",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "Commons for other repositories",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

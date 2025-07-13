@@ -13,7 +13,11 @@ export interface BusEventListener {
 /** */
 export declare function addBusRequestListener(listener: BusRequestListener): void;
 /** */
+export declare function removeBusRequestListener(listener: BusRequestListener): void;
+/** */
 export declare function addBusEventListener(listener: BusEventListener): void;
+/** */
+export declare function removeBusEventListener(listener: BusEventListener): void;
 /** */
 export declare function handleBusRequest<T, R>(topic: string, payload?: T): Promise<R>;
 /** */
